@@ -17,34 +17,6 @@ if (localStorage.getItem("Website") != null) {
   drawTable();
 }
 
-btnSubmit.addEventListener("click", function () {
-  addSite();
-});
-
-siteName.addEventListener("keyup", function () {
-  if (siteName.value.length < 3) {
-    siteName.classList.add("is-invalid");
-    siteName.classList.add("form-control-wrong");
-    textWrong[0].classList.remove("d-none");
-  } else {
-    siteName.classList.replace("is-invalid", "is-valid");
-    siteName.classList.replace("form-control-wrong", "form-control-right");
-    textWrong[0].classList.add("d-none");
-  }
-});
-
-siteURL.addEventListener("keyup", function () {
-  if (urlRegex.test(siteURL.value) == false) {
-    siteURL.classList.add("is-invalid");
-    siteURL.classList.add("form-control-wrong");
-    textWrong[1].classList.remove("d-none");
-  } else {
-    siteURL.classList.replace("is-invalid", "is-valid");
-    siteURL.classList.replace("form-control-wrong", "form-control-right");
-    textWrong[1].classList.add("d-none");
-  }
-});
-
 function addSite() {
   if (siteName.value.length < 3 || urlRegex.test(siteURL.value) == false) {
     console.log(urlRegex.test(siteURL.value));
@@ -86,6 +58,10 @@ function addSite() {
   }
 }
 
+btnSubmit.addEventListener("click", function () {
+  addSite();
+});
+
 function clearForm() {
   siteName.value = "";
   siteURL.value = "";
@@ -94,6 +70,7 @@ function clearForm() {
   siteURL.classList.remove("is-valid");
   siteURL.classList.remove("form-control-right");
 }
+
 function drawTable() {
   tbody = "";
   for (i = 0; i < siteArray.length; i++) {
@@ -117,6 +94,30 @@ function drawTable() {
   }
   document.querySelector("#tbody").innerHTML = tbody;
 }
+
+siteName.addEventListener("keyup", function () {
+  if (siteName.value.length < 3) {
+    siteName.classList.add("is-invalid");
+    siteName.classList.add("form-control-wrong");
+    textWrong[0].classList.remove("d-none");
+  } else {
+    siteName.classList.replace("is-invalid", "is-valid");
+    siteName.classList.replace("form-control-wrong", "form-control-right");
+    textWrong[0].classList.add("d-none");
+  }
+});
+
+siteURL.addEventListener("keyup", function () {
+  if (urlRegex.test(siteURL.value) == false) {
+    siteURL.classList.add("is-invalid");
+    siteURL.classList.add("form-control-wrong");
+    textWrong[1].classList.remove("d-none");
+  } else {
+    siteURL.classList.replace("is-invalid", "is-valid");
+    siteURL.classList.replace("form-control-wrong", "form-control-right");
+    textWrong[1].classList.add("d-none");
+  }
+});
 
 btnDelete = document.querySelector("#btn-delete");
 btnVisit = document.querySelector("#btn-visit");
